@@ -1,0 +1,60 @@
+<!--
+<div id="slider-bg" title="level">
+  <div id="slider-handler">
+    <img src="slider.png" />
+  </div>
+</div>
+
+
+
+<p id="slider-description">
+  Puede usar las teclas derecha/izquierda para cambiar el nivel.
+</p>
+<span id="slider-label">Nivel:</span>
+<div id="slider-rail">
+  <button id="slider-handler" role="slider" aria-labelledby="slider-label" aria-describedby="slider-description"
+    aria-valuemin="1" aria-valuemax="3" aria-valuenow="2"></button>
+</div>
+-->
+<!-- https://midu.dev/css-scroll-snap-la-solucion-definitiva-a-la-creacion-de-sliders-en-la-web-parte-ii/-->
+<!-- Barra de navegación responsive y accesible con HTML, CSS y JS | Diseño adaptativo - flexbox de Yoelvis Mule en youtube -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .slider {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      overflow-x: scroll;
+      /* Vamos a añadir esto 👇 */
+      scroll-snap-type: x mandatory;
+    }
+
+    .img {
+      flex: 0 0 100%;
+      width: 100%;
+      object-fit: cover;
+
+      /* Vamos a añadir esto 👇 */
+      scroll-snap-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <img
+      src="https://images.unsplash.com/photo-1580501170961-bb0dbf63a6df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80" />
+    <img
+      src="https://images.unsplash.com/photo-1580501170888-80668882ca0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80" />
+    <img
+      src="https://images.unsplash.com/photo-1572508589584-94d778209dd9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80" />
+  </div>
+
+</body>
+
+</html>
