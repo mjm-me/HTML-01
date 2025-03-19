@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudio objetos - JSON</title>
+
+
+  </style>
+</head>
+
+<body>
+  <h1>Tareas síncronas/asíncronas</h1>
+  <h2>setTimeout, Callbacks Promise</h2>
+
+
+  <script>
+    //CALLBACK
+    console.log("CALLBACK------");
+    function tareaAsincrona(callback) {
+      setTimeout(() => {
+        console.log("Tarea completada"); //llega 3
+        callback(); // Ejecuta el callback
+      }, 2000);
+    }
+
+    console.log("Inicio"); //llega 1
+    tareaAsincrona(() => {
+      console.log("Callback ejecutado"); //llega 4
+    });
+    console.log("Fin");// llega 2
+
+    //-------------------------
+
+    //PROMISE
+    console.log("PROMISE-----");
+    const promesa = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("Promesa resuelta"); //llega 5
+      }, 2000);
+    });
+
+    console.log("Inicio");//llega 1
+    promesa
+      .then((resultado) => {
+        console.log(resultado); // "Promesa resuelta" llega 
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    console.log("Fin");//llega 2
+
+  </script>
+
+</body>
+
+</html>

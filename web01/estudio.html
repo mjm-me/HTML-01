@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo Yellow</title>
+  <style>
+    /* Estilo para los textos amarillos */
+    .yellow {
+      color: yellow;
+      background-color: black;
+      /* Agregamos fondo negro para destacar */
+    }
+
+    .important {
+      color: pink;
+      font-weight: bold;
+    }
+
+    .resaltado {
+      color: white;
+      background-color: green;
+      padding: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <p class="yellow">Este texto es amarillo.</p>
+  <p class="yellow">Otro texto amarillo.</p>
+  <p>Este texto no es amarillo.</p>
+  <button id="boton">Cambiar a Texto Rojo</button>
+  <button id="botonGrande">Cambiar a Mayúsculas</button>
+
+  <hr>
+
+  <h1 id="titulo">Título Original</h1>
+  <p id="descripcion">Este es un texto <strong>importante</strong>.</p>
+  <button id="botonTextContent">Cambiar con textContent</button>
+  <button id="botonInnerHTML">Cambiar con innerHTML</button>
+
+  <hr>
+
+  <img id="imagen"
+    src="https://www.dzoom.org.es/wp-content/uploads/2022/04/como-hacer-fotos-bebe-3-meses-6-meses-pose-boca-abajo-portada.jpg"
+    width="150px" alt="Imagen de ejemplo">
+  <button id="botonAtributo">Cambiar Atributo</button>
+  <button id="botonClase">Agregar Clase</button>
+
+  <script>
+    // Seleccionar todos los elementos con la clase "yellow"
+    const elementosAmarillos = document.querySelectorAll('.yellow');
+    const boton = document.getElementById('boton');
+    const textosParrafos = document.querySelectorAll('p');
+
+    // Cambiar el color de los textos amarillos a rojo al hacer clic en el botón
+    boton.addEventListener('click', () => {
+      elementosAmarillos.forEach(elemento => {
+        elemento.style.color = 'red';
+      });
+    });
+
+    botonGrande.addEventListener('click', () => {
+      textosParrafos.forEach(item => {
+        item.style.textTransform = 'uppercase'; // Cambia el texto a mayúsculas
+      });
+    });
+
+
+    // Seleccionamos los elementos
+    const titulo = document.getElementById('titulo');
+    const descripcion = document.getElementById('descripcion');
+    const botonTextContent = document.getElementById('botonTextContent');
+    const botonInnerHTML = document.getElementById('botonInnerHTML');
+
+    // Cambiar el texto del título usando textContent
+    botonTextContent.addEventListener('click', () => {
+      titulo.textContent = 'Cambia solo el texto del Título con textContent';
+      descripcion.textContent = 'Cambia dolo el párrafo del descrption, pero sin HTML, no strong o span.';
+    });
+
+    // Cambiar el HTML interno usando innerHTML
+    botonInnerHTML.addEventListener('click', () => {
+      titulo.innerHTML = 'Cambio el texto del Título <span class="important">con innerHTML</span>';
+      descripcion.innerHTML = 'Este párrafo ha cambiado <strong>el bold</strong> porque lleva HTML actualizado.';
+    });
+
+    // Seleccionamos los elementos del DOM
+    const imagen = document.getElementById('imagen');
+    const botonAtributo = document.getElementById('botonAtributo');
+    const botonClase = document.getElementById('botonClase');
+
+    // Usar setAttribute para cambiar el atributo 'src' de la imagen
+    botonAtributo.addEventListener('click', () => {
+      imagen.setAttribute('src', 'https://www.dzoom.org.es/wp-content/uploads/2022/04/como-hacer-fotos-bebe-3-meses-6-meses-pose-etapa-vida-interactuar-.jpg');
+      imagen.setAttribute('alt', 'Nueva imagen de ejemplo');
+    });
+
+    // Usar classList.add para agregar la clase 'resaltado' al botón
+    botonClase.addEventListener('click', () => {
+      botonClase.classList.add('resaltado');
+    });
+
+
+    //EJEMPLO FUNCIÓN CALLBACK, SE VE EN EL CONSOLE DEL NAVEGADOR
+    function procesarUsuario(callback) {
+      const nombre = 'María';
+      callback(nombre); // Llama al callback con el parámetro 'nombre'
+    }
+    // Función que saluda
+    function saludar(nombre) {
+      console.log(`Hola, ${nombre}!`);
+    }
+    // Otra función que registra el nombre
+    function registrarUsuario(nombre) {
+      console.log(`Usuario registrado: ${nombre}`);
+    }
+    // Usando la misma función 'procesarUsuario' con diferentes callbacks
+    procesarUsuario(saludar); // Saluda
+    procesarUsuario(registrarUsuario); // Registra al usuario
+
+    //EJEMPLO FUNCIÓN ANÓNIMA, SE VE EN EL CONSOLE DEL NAVEGADOR
+    function procesarUsuario(callback) {
+      const nombre = 'Juan';
+      callback(nombre);
+    }
+    function procesarUsuario1(callback) {
+      const patata = 'Rosa';
+      callback(patata);
+    }
+    // En lugar de una función con nombre, usamos una función anónima como callback
+    procesarUsuario(function (nombre) {
+      console.log(`Hola, ${nombre}! como función anónima`);
+    });
+    procesarUsuario((nombre) => {
+      console.log(`Hola, ${nombre}! como arrow function`);
+    });
+    // Usamos otra función anónima para registrar al usuario
+    procesarUsuario1(function (patata) {
+      console.log(`Usuario registrado: ${patata}`);
+    });
+    procesarUsuario1((patata) => {
+      console.log(`Usuario registrado: ${patata}`);
+    });
+
+    const persona = {
+      nombre: 'María',
+      edad: 30,
+      esEstudiante: true
+    };
+
+    // Acceder a propiedades
+    console.log(persona.nombre); // Resultado: 'María' (notación de punto)
+    console.log(persona['edad']); // Resultado: 30 (notación de corchetes)
+
+    // Modificar propiedades
+    persona.nombre = 'Juan'; // Cambia el valor a 'Juan'
+    persona['edad'] = 25;    // Cambia el valor a 25
+
+    console.log(persona); // Resultado: {nombre: 'Juan', edad: 25, esEstudiante: true}
+    console.log(`Ahora la persona es: ${persona.nombre}`); // Resultado: 'María' (notación de punto)
+    console.log(persona['edad']); // Resultado: 30 (notación de corchetes)
+    //-------------------------- objetos
+    const usuario = {
+      nombre: 'Luis',
+      direccion: {
+        calle: 'Gran Vía',
+        numero: 12,
+        ciudad: 'Madrid'
+      }
+    };
+    console.log(usuario.direccion.ciudad); // Resultado: 'Madrid'
+
+    const tienda = {
+      productos: ['Manzanas', 'Peras', 'Plátanos']
+    };
+    console.log(tienda.productos[0, 2]); // Resultado: 'Manzanas'
+
+
+    const coche = { marca: 'Toyota', modelo: 'Corolla', año: 2022 };
+    for (let clave in coche) {
+      console.log(`${clave}: ${coche[clave]}`);
+    }
+    const propiedades = Object.keys(coche); // ['marca', 'modelo', 'año']
+    console.log(propiedades);
+
+    const propiedades2 = Object.keys(coche); // ['marca', 'modelo', 'año']
+    console.log(propiedades);
+  </script>
+</body>
+
+</html>

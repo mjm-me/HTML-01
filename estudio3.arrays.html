@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudio objetos - JSON</title>
+
+
+  </style>
+</head>
+
+<body>
+  <h1>Arrays</h1>
+  <h2>Métodos</h2>
+
+
+  <script>
+    //forEach - Es útil cuando necesitas procesar los elementos pero no necesitas devolver un nuevo array.
+    console.log("método ForEach");
+    const numeros1 = [1, 2, 3, 4, 5];
+    // Usamos forEach para imprimir cada número
+    numeros1.forEach((numero) => {
+      console.log(numero);
+    });
+
+    // MAP - recorre el array y devuelve un nuevo array con los resultados de la función que proporcionas.
+    // Útil para transformar los datos.
+    console.log("método MAP");
+    const numeros2 = [1, 2, 3, 4, 5];
+    // Creamos un nuevo array multiplicando cada número por 2
+    const numerosDoblados = numeros2.map((numero) => numero * 2);
+    console.log(numerosDoblados);    // Resultado: [2, 4, 6, 8, 10]
+
+    //FILTER - crea un nuevo array con los elementos que cumplen con una condición.
+    console.log("método FILTER");
+    const numeros3 = [1, 2, 3, 4, 5];
+    // Filtramos los números mayores que 3
+    const mayoresQueTres = numeros3.filter((numero) => numero > 3);
+    console.log(mayoresQueTres); // Resultado: [4, 5]
+
+    //REDUCE - Toma un array y lo reduce a un único valor, acumulando resultados a medida que recorre los elementos.
+    console.log("método REDUCE");
+    const numeros4 = [1, 2, 3, 4, 5];
+    // Sumamos todos los números
+    const sumaTotal = numeros4.reduce((acumulador, numero) => acumulador + numero, 0);
+    console.log(sumaTotal);   // Resultado: 15
+
+    //FIND - devuelve el primer elemento que cumpla con la condición especificada. Si no encuentra ninguno, devuelve undefined.
+    console.log("método FIND");
+    const numeros5 = [1, 2, 3, 4, 5];
+    // Encuentra el primer número mayor que 3
+    const mayorQueTres = numeros5.find((numero) => numero > 3);
+    console.log(mayorQueTres);    // Resultado: 4
+
+    //findIndex - devuelve el primer elemento que cumpla con la condición especificada. Si no encuentra ninguno, devuelve undefined.
+    console.log("método findIndex");
+    const numeros6 = [1, 2, 3, 4, 5];
+    // Encuentra el índice del primer número mayor que 3
+    const indiceMayorQueTres = numeros6.findIndex((numero) => numero > 3);
+    console.log(indiceMayorQueTres);     // Resultado: 3 (índice del número 4)
+
+    //for...of - forma más moderna y limpia de recorrer arrays en JavaScript.
+    console.log("método for..of más moderno");
+    const numeros7 = [1, 2, 3, 4, 5];
+    // Usamos for...of para recorrer el array
+    for (const numero of numeros7) {
+      console.log(numero);
+    }
+    // Resultado en consola:
+    // 1
+    // 2
+    // 3
+    // 4
+    // 5
+
+    //SORT - ordena los elementos del array. Por defecto, los trata como cadenas,
+    //  pero puedes proporcionar una función personalizada para ordenar números u otros valores.
+    console.log("método sort");
+    const numeros8 = [4, 2, 5, 1, 3];
+    // Ordenamos de menor a mayor
+    const numerosOrdenados = numeros8.sort((a, b) => a - b);
+    console.log(numerosOrdenados);
+    // Resultado: [1, 2, 3, 4, 5]
+
+
+
+  </script>
+
+</body>
+
+</html>

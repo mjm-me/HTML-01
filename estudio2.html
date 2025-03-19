@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudio objetos - JSON</title>
+  <style>
+    /* Estilo para los textos amarillos */
+  </style>
+</head>
+
+<body>
+  <h1>Objetos y JSON</h1>
+  <h2>Lista de Usuarios</h2>
+  <ul id="usuariosMJ"></ul>
+  <script src="app.js"></script>
+
+  <script>
+    const persona = {
+      nombre: "Juan",
+      edad: 25,
+      hobbies: ["leer", "correr", "viajar"]
+    };
+    // Convertir el objeto a JSON
+    const jsonString = JSON.stringify(persona);
+    console.log(jsonString);
+
+    //---------------------
+    const jsonString2 = '{"nombre":"Juan","edad":25,"hobbies":["leer","correr","viajar"]}';
+    // Convertir JSON a objeto
+    const persona2 = JSON.parse(jsonString2);
+    console.log(persona2);     // Resultado: { nombre: 'Juan', edad: 25, hobbies: [ 'leer', 'correr', 'viajar' ] }
+
+    //-------------------
+    // Supongamos que tienes una aplicación web que necesita guardar datos de usuario en el navegador utilizando localStorage.
+    // Objeto de usuario
+    const usuario = {
+      nombre: "María",
+      edad: 28,
+      activo: true
+    };
+    // Guardar el objeto en localStorage como JSON
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+    // Recuperar el JSON desde localStorage
+    const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
+    console.log(usuarioGuardado);    // Resultado: { nombre: 'María', edad: 28, activo: true }
+
+    //--------------------
+    //JSON devuelto por la API:
+    [
+      { "id": 1, "nombre": "Juan" },
+      { "id": 2, "nombre": "Ana" }
+    ]
+    //Cómo lo usarías en JavaScript:
+    const usuarios = JSON.parse(`
+    [
+      { "id": 1, "nombre": "Juan" },
+      { "id": 2, "nombre": "Ana" }
+    ]
+    `);
+
+    console.log(usuarios[0].nombre); // Resultado: "Juan"
+    console.log(usuarios[1].nombre); // Resultado: "Ana"
+
+    //----------------------
+    //Manipulación de un API y mostrar sus datos
+    // Hacer una solicitud GET a la API
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
+        // Verificar si la respuesta es exitosa
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        }
+        return response.json(); // Convertir la respuesta a JSON
+      })
+      .then((data) => {
+        // Manipular los datos: Mostramos nombres y correos electrónicos
+        data.forEach((usuario) => {
+          console.log(`Nombre: ${usuario.name}, Email: ${usuario.email}`);
+        });
+      })
+      .catch((error) => {
+        // Manejar errores
+        console.error('Hubo un problema con la solicitud:', error.message);
+      });
+
+    //-----------------
+    // Ahora lo quiero pintar en una pág html
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((respuesta) => respuesta.json())
+      .then((losUsuarios) => {
+        // Seleccionar un elemento del DOM
+        const listaUsuarios = document.getElementById('usuariosMJ');
+
+        // Crear elementos <li> para cada usuario
+        losUsuarios.forEach((usuario) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = `${usuario.name} - ${usuario.email}`;
+          listaUsuarios.appendChild(listItem);
+        });
+      })
+      .catch((error) => {
+        console.error('Error:', error.message);
+      });
+
+  </script>
+
+</body>
+
+</html>
